@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HOME</title>
+</head>
+<body>
+    <h1>HOME {{ user }} ({{ user.id }})</h1>
+
+    <ul>
+        <li><a href="{% url 'feed:home' %}">My posts</a></li>
+        <li><a href="{% url 'feed:home' %}?filter=tracking">Me and the posts of everyone I’m tracking</a></li>
+        <li><a href="{% url 'feed:home' %}?filter=all">Everybody’s posts</a></li>
+    </ul>
+
+{% if feed_title %}
+    <h3>{{ feed_title }}</h3>
+    <ul>
+    {% if feed_list %}
+        {% for feed in feed_list %}
+        <li>{{ feed }}</li>
+        {% endfor %}
+    {% else %}
+        <li>No posts...</li>
+    {% endif %}
+    </ul>
+{% endif %}
+
+    <a href="{% url 'django.contrib.auth.views.logout' %}">Logout</a>
+</body>
+</html>
