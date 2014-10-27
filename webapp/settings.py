@@ -94,3 +94,9 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     'webapp/templates',
 )
+
+try:
+    # pylint: disable-msg=wildcard-import,import-error,no-name-in-module
+    from webapp.chef_settings import *
+except ImportError:
+    pass
